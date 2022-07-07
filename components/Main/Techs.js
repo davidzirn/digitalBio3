@@ -70,7 +70,7 @@ const Techs = (props) => {
         ></div>
         <div
           style={{ justifyContent: props.reverse ? "flex-end" : "flex-start" }}
-          className="flex flex-wrap mt-[50px] gap-[100px]"
+          className="flex kj flex-wrap mt-[50px] gap-[100px]"
         >
           {props.techs.map((object) => {
             return (
