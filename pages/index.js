@@ -1,69 +1,184 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import Head from "next/head";
+import Image from "next/image";
+import FixedSocials from "../components/UI/FixedSocials";
+import styles from "../styles/Home.module.css";
+import gsap from "gsap";
+import { useRef, useEffect } from "react";
+import Hero from "../components/Main/Hero";
+import GeneralInfo from "../components/Main/GeneralInfo";
+import FixedBackground from "../components/UI/FixedBackground";
+import Header from "../components/Header/Header";
+import GeneralInfoVol2 from "../components/Main/GeneralInfoVol2";
+import FixedSideBar from "../components/UI/FixedSideBar";
+import TechStack from "../components/Main/TechStack";
+import Techs from "../components/Main/Techs";
+import { Parallax } from "react-scroll-parallax";
+import ContactForm from "../components/Main/ContactForm";
+import CoolPicture from "../components/Main/CoolPicture";
+import Footer from "../components/Main/Footer";
 
 export default function Home() {
+  const mainTechs = [
+    {
+      id: 1,
+      title: "React JS",
+      src: "/icons/technology/React.svg",
+      descript:
+        "Esse incididunt dolore nulla ad excepteur amet excepteur dolor eu. Consectetur labore ea magna est do eiusmod non quis labore. Consectetur anim ea ullamco aliqua exercitation nostrud exercitation ad officia excepteur est.",
+    },
+    {
+      id: 2,
+      title: "JavaScript",
+      src: "/icons/technology/JavaScript.svg",
+      descript:
+        "Esse incididunt dolore nulla ad excepteur amet excepteur dolor eu. Consectetur labore ea magna est do eiusmod non quis labore. Consectetur anim ea ullamco aliqua exercitation nostrud exercitation ad officia excepteur est.",
+    },
+    {
+      id: 3,
+      title: "Next.js",
+      src: "/icons/technology/NextDark.svg",
+      descript:
+        "Esse incididunt dolore nulla ad excepteur amet excepteur dolor eu. Consectetur labore ea magna est do eiusmod non quis labore. Consectetur anim ea ullamco aliqua exercitation nostrud exercitation ad officia excepteur est.",
+    },
+    {
+      id: 6,
+      title: "React Native",
+      src: "/icons/technology/React.svg",
+      descript:
+        "Esse incididunt dolore nulla ad excepteur amet excepteur dolor eu. Consectetur labore ea magna est do eiusmod non quis labore. Consectetur anim ea ullamco aliqua exercitation nostrud exercitation ad officia excepteur est.",
+    },
+    {
+      id: 4,
+      title: "TypeScript",
+      src: "/icons/technology/TypeScript.svg",
+      descript:
+        "Esse incididunt dolore nulla ad excepteur amet excepteur dolor eu. Consectetur labore ea magna est do eiusmod non quis labore. Consectetur anim ea ullamco aliqua exercitation nostrud exercitation ad officia excepteur est.",
+    },
+    {
+      id: 5,
+      title: "Tailwind",
+      src: "/icons/technology/Tailwind.svg",
+      descript:
+        "Esse incididunt dolore nulla ad excepteur amet excepteur dolor eu. Consectetur labore ea magna est do eiusmod non quis labore. Consectetur anim ea ullamco aliqua exercitation nostrud exercitation ad officia excepteur est.",
+    },
+  ];
+  const infrastructe = [
+    {
+      id: 1,
+      title: "GitLab",
+      src: "/icons/technology/GitLab.svg",
+      descript:
+        "Esse incididunt dolore nulla ad excepteur amet excepteur dolor eu. Consectetur labore ea magna est do eiusmod non quis labore. Consectetur anim ea ullamco aliqua exercitation nostrud exercitation ad officia excepteur est.",
+    },
+    {
+      id: 2,
+      title: "Netlify",
+      src: "/icons/technology/Netlify.svg",
+      descript:
+        "Esse incididunt dolore nulla ad excepteur amet excepteur dolor eu. Consectetur labore ea magna est do eiusmod non quis labore. Consectetur anim ea ullamco aliqua exercitation nostrud exercitation ad officia excepteur est.",
+    },
+    {
+      id: 3,
+      title: "Slack",
+      src: "/icons/technology/Slack.svg",
+      descript:
+        "Esse incididunt dolore nulla ad excepteur amet excepteur dolor eu. Consectetur labore ea magna est do eiusmod non quis labore. Consectetur anim ea ullamco aliqua exercitation nostrud exercitation ad officia excepteur est.",
+    },
+    {
+      id: 4,
+      title: "Jira",
+      src: "/icons/technology/Jira.svg",
+      descript:
+        "Esse incididunt dolore nulla ad excepteur amet excepteur dolor eu. Consectetur labore ea magna est do eiusmod non quis labore. Consectetur anim ea ullamco aliqua exercitation nostrud exercitation ad officia excepteur est.",
+    },
+    {
+      id: 5,
+      title: "Trello",
+      src: "/icons/technology/Trello.svg",
+      descript:
+        "Esse incididunt dolore nulla ad excepteur amet excepteur dolor eu. Consectetur labore ea magna est do eiusmod non quis labore. Consectetur anim ea ullamco aliqua exercitation nostrud exercitation ad officia excepteur est.",
+    },
+    {
+      id: 6,
+      title: "Confluence",
+      src: "/icons/technology/Confluence.svg",
+      descript:
+        "Esse incididunt dolore nulla ad excepteur amet excepteur dolor eu. Consectetur labore ea magna est do eiusmod non quis labore. Consectetur anim ea ullamco aliqua exercitation nostrud exercitation ad officia excepteur est.",
+    },
+  ];
+  const others = [
+    {
+      id: 1,
+      title: "Figma",
+      src: "/icons/technology/Figma.svg",
+      descript:
+        "Esse incididunt dolore nulla ad excepteur amet excepteur dolor eu. Consectetur labore ea magna est do eiusmod non quis labore. Consectetur anim ea ullamco aliqua exercitation nostrud exercitation ad officia excepteur est.",
+    },
+    {
+      id: 2,
+      title: "REST API",
+      src: "/icons/technology/rest.svg",
+      descript:
+        "Esse incididunt dolore nulla ad excepteur amet excepteur dolor eu. Consectetur labore ea magna est do eiusmod non quis labore. Consectetur anim ea ullamco aliqua exercitation nostrud exercitation ad officia excepteur est.",
+    },
+    {
+      id: 3,
+      title: "Swift",
+      src: "/icons/technology/swift-icon.svg",
+      descript:
+        "Esse incididunt dolore nulla ad excepteur amet excepteur dolor eu. Consectetur labore ea magna est do eiusmod non quis labore. Consectetur anim ea ullamco aliqua exercitation nostrud exercitation ad officia excepteur est.",
+    },
+    {
+      id: 4,
+      title: "GSAP",
+      src: "/icons/technology/gsap-greensock.svg",
+      descript:
+        "Esse incididunt dolore nulla ad excepteur amet excepteur dolor eu. Consectetur labore ea magna est do eiusmod non quis labore. Consectetur anim ea ullamco aliqua exercitation nostrud exercitation ad officia excepteur est.",
+    },
+    {
+      id: 5,
+      title: "Webpack",
+      src: "/icons/technology/Webpack.svg",
+      descript:
+        "Esse incididunt dolore nulla ad excepteur amet excepteur dolor eu. Consectetur labore ea magna est do eiusmod non quis labore. Consectetur anim ea ullamco aliqua exercitation nostrud exercitation ad officia excepteur est.",
+    },
+  ];
   return (
-    <div className={styles.container}>
+    <>
       <Head>
-        <title>Create Next App</title>
+        <title>David Zirnsák - Digital Biography</title>
         <meta name="description" content="Generated by create next app" />
         <link rel="icon" href="/favicon.ico" />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+          rel="stylesheet"
+        />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+          href="https://fonts.googleapis.com/css2?family=League+Gothic&display=swap"
+          rel="stylesheet"
+        ></link>
       </Head>
+      <Header />
+      <Hero />
+      <FixedSocials />
+      <GeneralInfoVol2 />
+      <FixedSideBar />
+      <div className="relative overflow-hidden">
+        <TechStack />
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
+        <Techs title={"Development"} techs={mainTechs} />
+        <Techs title={"Infrastructure"} reverse techs={infrastructe} />
 
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className={styles.card}
-          >
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
-    </div>
-  )
+        <Techs title="Others" techs={others} />
+        <ContactForm />
+      </div>
+      {/* <Footer /> */}
+      {/* <GeneralInfo /> */}
+    </>
+  );
 }

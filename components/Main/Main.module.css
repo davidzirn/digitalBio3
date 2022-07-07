@@ -1,0 +1,42 @@
+.heroBackground {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #5100ff;
+  top: 0px;
+  left: 0px;
+  clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
+  animation: initAnim 800ms ease-in-out forwards;
+  animation-delay: 0s;
+}
+@keyframes initAnim {
+  100% {
+    clip-path: polygon(56% 0, 100% 0, 100% 100%, 78% 100%);
+  }
+}
+.generalInfoBackground {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #5100ff;
+  top: 0px;
+  left: 0px;
+  clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
+  animation: initAnim2 800ms ease-in-out forwards;
+  animation-delay: 0s;
+}
+@keyframes initAnim2 {
+  100% {
+    clip-path: polygon(78% 0, 100% 0, 100% 100%, 100% 100%);
+  }
+}
+.socials {
+  animation: socialsAnim 500ms ease-in-out forwards;
+  transform: translateX(150%);
+  animation-delay: 0.5s;
+}
+@keyframes socialsAnim {
+  100% {
+    transform: translateX(0%);
+  }
+}
